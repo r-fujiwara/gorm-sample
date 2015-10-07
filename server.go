@@ -10,10 +10,18 @@ import (
 var db gorm.DB
 
 func main() {
+	goji.Get("/users", UserIndex)
+	goji.Get("/users/:id/books", BookLists)
+	goji.Post("/users/:id/books", BookLists)
 	goji.Serve()
 }
 
-func init(){
-	db, _ = gorm.Open("mysql", "test-gorm-user:test-gorm-user@/gorm-test-sample?charset=utf8&parseTime=True")
+
+// controllers.users.index
+func UserIndex(){
+	
 }
 
+func BookLists(){
+	
+}
