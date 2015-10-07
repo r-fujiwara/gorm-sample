@@ -1,4 +1,4 @@
-package db
+package main
 
 import (
 	"github.com/jinzhu/gorm"
@@ -7,6 +7,7 @@ import (
 )
 
 func main(){
-	db, _ := gorm.Open("mysql", "root:@/gorm?charset=utf8&parseTime=True")
+	db, _ := gorm.Open("mysql", "test-gorm-user:test-gorm-user@/gorm-test-sample?charset=utf8&parseTime=True")
+
 	db.CreateTable(&models.User{})
 }

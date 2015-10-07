@@ -1,5 +1,9 @@
 package models
 
+import(
+	"time"
+)
+
 type User struct {
     id int64 `gorm:"primary_key"`
     name string `sql:"size:255"`
