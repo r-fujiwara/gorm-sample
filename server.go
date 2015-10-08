@@ -25,3 +25,7 @@ func UserIndex(){
 func BookLists(){
 	
 }
+
+func addBook(){
+	
+}
