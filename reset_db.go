@@ -19,8 +19,6 @@ func main(){
 		return
 	}
 	
-	db.DB().Ping()
-
 	db.CreateTable(&models.User{})
-	db.CreateTable(&models.Book{})
+	//db.CreateTable(&models.Book{})
 }

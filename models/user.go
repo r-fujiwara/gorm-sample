@@ -5,10 +5,10 @@ import(
 )
 
 type User struct {
-		id int64 `gorm:"primary_key"`
-		name string `sql:"size:255"`
-		book_id int64 `sql:"index"`
-		created_at time.Time
-		updated_at time.Time
-		deleted_at time.Time
+		Id int `sql:"AUTO_INCREMENT"`
+		Name string `sql:"size:255"`
+		BookId int `sql:"index"`
+		CreatedAt time.Time
+		UpdatedAt time.Time
+		DeletedAt time.Time
 }
