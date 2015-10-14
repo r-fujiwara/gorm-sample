@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/r-fujiwara/gorm-sample/models"
+	_ "github.com/r-fujiwara/gorm-sample/models"
 )
+
+var db gorm.DB
 
 func main(){
 	// create databaseしてくれるわけではない
@@ -22,5 +24,12 @@ func main(){
 	db.DB().Ping()
 
 	db.CreateTable(&models.User{})
-	//db.CreateTable(&models.Book{})
+	db.CreateTable(&models.OauthApplication{})
+	db.CreateTable(&models.OauthAccessToken{})
+}
+
+func ResetTables(){
+	db.DropTableIfExists(&models.User{})
+	db.DropTableIfExists(&models.OauthApplication{})
+	db.DropTableIfExists(&models.OauthAccessToken{})
 }

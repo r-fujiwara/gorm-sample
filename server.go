@@ -62,5 +62,4 @@ func TokenCreate(w http.ResponseWriter, r *http.Request){
 		fmt.Printf("%+v\n", params)
 	}
 	
-	
 }
