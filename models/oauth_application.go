@@ -6,6 +6,7 @@ import(
 
 type OauthApplication struct {
 	Id int `sql:AUTO_INCREMENT`
+	Name string `sql:"size:255"`
 	Uid string `sql:"size:255"`
 	Secret string `sql:"size:255"`
 	RedirectUri string `sql:"size:255"`

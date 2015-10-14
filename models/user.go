@@ -6,8 +6,8 @@ import(
 
 type User struct {
 		Id int `sql:"AUTO_INCREMENT"`
-		Name string `sql:"size:255"`
-		BookId int `sql:"index"`
+		Username string `sql:"size:255"`
+		Password string `sql:size:255`
 		CreatedAt time.Time
 		UpdatedAt time.Time
 		DeletedAt time.Time

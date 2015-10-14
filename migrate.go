@@ -4,14 +4,25 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
-	_ "github.com/r-fujiwara/gorm-sample/models"
+	"github.com/r-fujiwara/gorm-sample/models"
 )
 
 var db gorm.DB
 
-func main(){
-	// create databaseしてくれるわけではない
-	// 大人しくCreate Databaseするのが無難か？
+func ResetTables(){
+	db.DropTableIfExists(&models.User{})
+	db.DropTableIfExists(&models.OauthApplication{})
+	db.DropTableIfExists(&models.OauthAccessToken{})
+}
+
+func ExecuteSeedData(){
+	user := &models.User{Username: "r-fujiwara", Password: "mino-monta"}
+	db.Debug().NewRecord(user)
+	oauth_application := &models.OauthApplication{Uid: "0123456789", Name: "native_app", Secret: "0123456789", RedirectUri: "urn:ietf:wg:oauth:2.0:oob", Scopes: ""}
+	db.Debug().NewRecord(oauth_application)
+}
+
+func main() {
 	db, err := gorm.Open("mysql", "test-gorm-user:test-gorm-user@/gorm_test_sample?charset=utf8mb4&parseTime=True")
 
 	db.LogMode(true)
@@ -20,16 +31,16 @@ func main(){
 		fmt.Println(err)
 		return
 	}
-	
+	// if you create table see the my qiita article
+	// 何か変なエラー出て動かないのでやめた, sqlでやる
+	//ResetTables()
+
 	db.DB().Ping()
 
 	db.CreateTable(&models.User{})
 	db.CreateTable(&models.OauthApplication{})
 	db.CreateTable(&models.OauthAccessToken{})
+
+	SeedData()
 }
 
-func ResetTables(){
-	db.DropTableIfExists(&models.User{})
-	db.DropTableIfExists(&models.OauthApplication{})
-	db.DropTableIfExists(&models.OauthAccessToken{})
-}

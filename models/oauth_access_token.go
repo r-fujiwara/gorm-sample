@@ -9,7 +9,7 @@ type OauthAccessToken struct {
 	ResourceOwnerId int
 	ApplicationId int
 	Token string `sql:"size:255"`
-	RefreshToken string int
+	RefreshToken string `sql:"size:255"`
 	RevokeAt time.Time
 	CreatedAt time.Time
 	UpdatedAt time.Time
