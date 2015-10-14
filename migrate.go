@@ -15,13 +15,6 @@ func ResetTables(){
 	db.DropTableIfExists(&models.OauthAccessToken{})
 }
 
-func ExecuteSeedData(){
-	user := &models.User{Username: "r-fujiwara", Password: "mino-monta"}
-	db.Debug().NewRecord(user)
-	oauth_application := &models.OauthApplication{Uid: "0123456789", Name: "native_app", Secret: "0123456789", RedirectUri: "urn:ietf:wg:oauth:2.0:oob", Scopes: ""}
-	db.Debug().NewRecord(oauth_application)
-}
-
 func main() {
 	db, err := gorm.Open("mysql", "test-gorm-user:test-gorm-user@/gorm_test_sample?charset=utf8mb4&parseTime=True")
 
@@ -41,6 +34,9 @@ func main() {
 	db.CreateTable(&models.OauthApplication{})
 	db.CreateTable(&models.OauthAccessToken{})
 
-	SeedData()
+	user := models.User{Username: "r-fujiwara", Password: "mino-monta"}
+	db.Create(&user)
+	oauth_application := models.OauthApplication{Uid: "0123456789", Name: "native_app", Secret: "0123456789", RedirectUri: "urn:ietf:wg:oauth:2.0:oob", Scopes: ""}
+	db.Create(&oauth_application)
 }
 
