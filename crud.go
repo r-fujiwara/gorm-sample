@@ -25,6 +25,8 @@ func main() {
 	fmt.Println(u.Username)
 	// r-fujiwara
 
+	newUser := models.User{Username: "t-kaneko", Password: "password"}
 
+	db.Create(&newUser)
 }
 
