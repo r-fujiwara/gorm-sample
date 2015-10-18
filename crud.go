@@ -27,6 +27,11 @@ func main() {
 
 	newUser := models.User{Username: "t-kaneko", Password: "password"}
 
+	// insert
 	db.Create(&newUser)
+
+	var upUser models.User
+	db.Model(&upUser).Where("id = ?", 2).UpdateColumn("username", "takahashi")
+	// only column update username
 }
 

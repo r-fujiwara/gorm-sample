@@ -9,12 +9,6 @@ import (
 
 var db gorm.DB
 
-func ResetTables(){
-	db.DropTableIfExists(&models.User{})
-	db.DropTableIfExists(&models.OauthApplication{})
-	db.DropTableIfExists(&models.OauthAccessToken{})
-}
-
 func main() {
 	db, err := gorm.Open("mysql", "test-gorm-user:test-gorm-user@/gorm_test_sample?charset=utf8mb4&parseTime=True")
 
@@ -24,9 +18,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	// if you create table see the my qiita article
-	// 何か変なエラー出て動かないのでやめた, sqlでやる
-	//ResetTables()
 
 	db.DB().Ping()
 
@@ -37,7 +28,7 @@ func main() {
 	user := models.User{Username: "r-fujiwara", Password: "mino-monta"}
 	// Create はdb.Debug() とかやらなくてもログに出る
 	db.Create(&user)
-	oauth_application := models.OauthApplication{Uid: "0123456789", Name: "native_app", Secret: "0123456789", RedirectUri: "urn:ietf:wg:oauth:2.0:oob", Scopes: ""}
+	oauth_application := models.OauthApplication{Uid: "0123456789", Name: "normal_app", Secret: "0123456789", RedirectUri: "urn:ietf:wg:oauth:2.0:oob", Scopes: ""}
 	db.Create(&oauth_application)
 }
 
