@@ -33,5 +33,7 @@ func main() {
 	var upUser models.User
 	db.Model(&upUser).Where("id = ?", 2).UpdateColumn("username", "takahashi")
 	// only column update username
+	// Upadate を使うとusernameだけupdateが走ってpasswordがnilになるので注意！
+
 }
 
